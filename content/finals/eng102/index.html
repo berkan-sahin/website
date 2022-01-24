@@ -1,0 +1,71 @@
+---
+title: "ENG102 Letter Grade Calculator"
+date: 2022-01-23T20:20:17+03:00
+draft: false
+---
+
+<link rel="stylesheet" href="/finals.css">
+<script src="eng102.js"></script>
+
+<body onload="calculateFinal()">
+    <table class="inputs">
+        <tbody>
+            <tr>
+                <th>Assessment</th>
+                <th>Score</th>
+            </tr>
+            <tr>
+                <td>
+                    <p>Library Skills Task (out of 10)</p>
+                </td>
+                <td>
+                    <input type="number" name="library" id="library" oninput="calculateFinal()" value="10" max="10"
+                        min="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Academic Essay (out of 22)</p>
+                </td>
+                <td>
+                    <input type="number" name="essay" id="essay" value="22" oninput="calculateFinal()" max="22" min="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Oral Presentation (out of 24)</p>
+                </td>
+                <td>
+                    <input type="number" name="oral" id="oral" oninput="calculateFinal()" value="24" max="24" min="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Research Paper Outline (out of 15)</p>
+                </td>
+                <td>
+                    <input type="number" name="outline" id="outline" oninput="calculateFinal()" value="15" max="15"
+                        min="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Research Paper (out of 100)</p>
+                </td>
+                <td>
+                    <input type="number" name="rp" id="rp" oninput="calculateFinal()" value="100" max="100" min="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>End of Course Interview (out of 60)</p>
+                </td>
+                <td>
+                    <input type="number" name="interview" id="interview" value="60" oninput="calculateFinal()" max="60"
+                        min="0">
+                </td>
+        </tbody>
+    </table>
+    <br>
+    <h2 id="results"></h2>
+</body>

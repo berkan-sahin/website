@@ -1,0 +1,169 @@
+---
+title: "PHYS101/102 Final Calculator"
+date: 2022-01-23T20:20:24+03:00
+draft: true
+---
+
+<link rel="stylesheet" href="/finals.css">
+<script src="phys101.js"></script>
+
+
+<body onload="calculateFinal()">
+    <table class="inputs">
+        <tbody>
+            <tr>
+                <th>Midterm 1 Score</th>
+                <th>Midterm 2 Score</th>
+                <th>Quiz Average</th>
+                <th>Homework Average</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" name="mt1Score" id="mt1Score" value="100" max="100" min="0"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="mt2Score" id="mt2Score" value="100" max="100" min="0"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="text" name="qAvg" id="qAvg" value="10" oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="text" name="hwAvg" id="hwAvg" value="100" oninput="calculateFinal()">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h3 class="sectionHead">Laboratory Work</h3>
+    <br>
+    <table class="inputs">
+        <tbody>
+            <tr>
+                <th>Experiment 1 Score</th>
+                <th>Experiment 2 Score</th>
+                <th>Experiment 3 Score</th>
+                <th>Revised Proposal</th>
+                <th>Final Report</th>
+                <th>Video Presentation</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" name="exp1Score" id="exp1Score" value="100" min="0" max="100"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="exp2Score" id="exp2Score" value="100" min="0" max="100"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="exp3Score" id="exp3Score" value="100" min="0" max="100"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="proposalScore" id="proposalScore" value="100" min="0" max="100"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="finalReport" id="finalReport" value="100" min="0" max="100"
+                        oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="number" name="projVideo" id="projVideo" value="10" min="0" max="10"
+                        oninput="calculateFinal()">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2 id="FZ">Not eligible for finals :(</h2>
+    <table class="req_score" id="reqScores">
+        <tbody>
+            <tr>
+                <th>Required Final Score</th>
+                <th>Resulting Letter Grade</th>
+            </tr>
+            <tr>
+                <td>
+                    <p id="D">∅</p>
+                </td>
+                <td>
+                    <p>D</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Dplus">∅</p>
+                </td>
+                <td>
+                    <p>D+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Cminus">∅</p>
+                </td>
+                <td>
+                    <p>C-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="C">∅</p>
+                </td>
+                <td>
+                    <p>C</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Cplus">∅</p>
+                </td>
+                <td>
+                    <p>C+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Bminus">∅</p>
+                </td>
+                <td>
+                    <p>B-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="B">∅</p>
+                </td>
+                <td>
+                    <p>B</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Bplus">∅</p>
+                </td>
+                <td>
+                    <p>B+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Aminus">∅</p>
+                </td>
+                <td>
+                    <p>A-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="A">∅</p>
+                </td>
+                <td>
+                    <p>A</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>

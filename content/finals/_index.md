@@ -1,7 +1,7 @@
 ---
 title: "Letter Grade Calculators"
 date: 2022-01-23T19:51:44+03:00
-draft: true
+draft: false
 ---
 
 # Letter Grade Calculators (for some courses at Bilkent University)

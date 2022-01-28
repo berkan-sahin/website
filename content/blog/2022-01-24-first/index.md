@@ -4,7 +4,7 @@ date: 2022-01-24T13:41:19+03:00
 draft: false
 ---
 
-If you remember the old version of `bsahin.xyz`, you probably remember a blogpost titled `Webpage Generation for Lazy People`, which was essentially a tutorial for using [pandoc](https://pandoc.org) to generate standalone webpages from a markdown file. While my old website, consisting of a few "lazily generated" pages and some handwritten HTML received compliments on its use of `duck.gif`, I felt that the website would become convoluted as I added more and more pages. And frankly, I became even lazier so I didn't want to edit `index.html` by hand every time I added some content.
+If you remember the old version of `bsahin.xyz`, you probably remember a blogpost titled `Webpage Generation for Lazy People`, which was essentially a tutorial for using [pandoc](https://pandoc.org) to generate standalone webpages from a markdown file. While my old website consisting of a few "lazily generated" pages and some handwritten HTML received compliments on its use of `duck.gif`, I felt that the website would become convoluted as I added more and more pages. And frankly, I became even lazier so I didn't want to edit `index.html` by hand every time I added some content.
 
 So I started looking for a static site generator. I had some criteria for picking one, which were:
 - It must support a variety of file formats. While I mostly use markdown, I prefer to write longer pages using org-mode. There are a few places where I resort to plain HTML as well (namely the letter grade calculators).

@@ -1,0 +1,121 @@
+---
+title: "MATH225 Final Calculator"
+date: 2022-01-31T21:29:34+03:00
+draft: false
+---
+
+<link rel="stylesheet" href="/finals.css">
+<script src="math225.js"></script>
+
+<body onload="calculateFinal()">
+    <table class="inputs">
+        <tbody>
+            <tr>
+                <th>Midterm Score</th>
+                <th>Homework Average</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="mtScore" id="mtScore" value="100" oninput="calculateFinal()">
+                </td>
+                <td>
+                    <input type="text" name="hwAvg" id="hwAvg" value="100" oninput="calculateFinal()">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 id="FZ">Not eligible for finals :(</h2>
+    <table class="req_score" id="reqScores">
+        <tbody>
+            <tr>
+                <th>Required Final Score</th>
+                <th>Resulting Letter Grade</th>
+            </tr>
+            <tr>
+                <td>
+                    <p id="D">∅</p>
+                </td>
+                <td>
+                    <p>D</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Dplus">∅</p>
+                </td>
+                <td>
+                    <p>D+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Cminus">∅</p>
+                </td>
+                <td>
+                    <p>C-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="C">∅</p>
+                </td>
+                <td>
+                    <p>C</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Cplus">∅</p>
+                </td>
+                <td>
+                    <p>C+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Bminus">∅</p>
+                </td>
+                <td>
+                    <p>B-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="B">∅</p>
+                </td>
+                <td>
+                    <p>B</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Bplus">∅</p>
+                </td>
+                <td>
+                    <p>B+</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="Aminus">∅</p>
+                </td>
+                <td>
+                    <p>A-</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p id="A">∅</p>
+                </td>
+                <td>
+                    <p>A</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <footer id="fDeal">
+        <p>
+            *: Score obtained via the final deal (midterm grade replaced with <code>min(final, 2*midterm)</code> if final>midterm)
+        </p>
+    </footer>
+</body>

@@ -25,15 +25,14 @@ body{
 figcaption{
     text-align: center;
     font-style: italic;
-}
+}*/
 code{
-    background-color: #282828;
-    font-family: "IBM Plex Mono", monospace;
-}
+    font-family: "IBM Plex Mono", monospace !important;
+}/*
 .bottom{
     text-align: center;
-}*/
-/*
+}
+
 .bottom a{
     color: #83a598;
 }

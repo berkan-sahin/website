@@ -68,8 +68,8 @@ void hanoi(int n, char source, char dest, char spare) {
    - We will use *repeated substitutions*
 **** Solution
 \begin{align}
-T(n) & = 2 * T(n - 1) + \Theta(1) \\
-T(0) & = \Theta(1)
+  T(n) & = 2 * T(n - 1) + \Theta(1) \\
+  T(0) & = \Theta(1)
 \end{align}
 - Solve using repeated substitution
 \begin{align}
@@ -181,6 +181,7 @@ int sequentialSearch(const int a[], int item, int n){
     $O(n)$
   - Average case :: The number of key comparisons 1, 2, ..., n
     (assuming uniform distribution)
+
     \begin{equation*}
     \frac{\sum_{i = 1}^{n} i}{n} = \frac{(n^2+n)/2}{n} => O(n)
     \end{equation*}

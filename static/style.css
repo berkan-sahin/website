@@ -100,3 +100,12 @@ h1.based{
     text-align: center;
     margin: auto;
 }
+.katex-display {
+    overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+    .eqn-num {
+        visibility: collapse;
+    }
+}

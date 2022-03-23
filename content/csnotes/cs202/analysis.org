@@ -1,0 +1,135 @@
+#+title: "Algorithm Analysis"
+#+date: 2022-03-23T12:15:38+03:00
+#+draft: true
+#+katex: true
+#+options: tex: t
+#+startup: latexpreview
+
+
+[[https://cs.bilkent.edu.tr/~adayanik/cs202/slides/L1_AlgorithmAnalysis.pptx][Slideshow]]
+* C++ code examples (iterative)
+** Time complexity : $O(n)$
+#+begin_src cpp
+for (int i = 0; i <= n; i+=2) {
+    k++;
+}
+#+end_src
+
+** Time complexity : $O(\log{n})$
+#+begin_src cpp
+for (int i = 0; i <= n; i+=2) {
+    k++;
+}
+#+end_src
+
+** Time complexity: $O(m\log{n})$
+#+begin_src cpp
+for (int i = n; i >= 1; i /= 20) {
+    j = m;
+    while (j >= 1)
+        j -= 20;
+}
+#+end_src
+
+** Time complexity : $O(n^2)$
+#+begin_src cpp
+i = 0;
+while (i < n * n * n) {
+    i =  i + (2 * n);
+}
+#+end_src
+
+* Recursive functions
+** Towers of Hanoi
+#+begin_src cpp
+void hanoi(int n, char source, char dest, char spare) {
+    if (n > 0) {
+        hanoi(n - 1, source, spare, dest);
+        // Move from source to dest
+        hanoi(n - 1, spare, dest, source);
+    }
+}
+#+end_src
+1. Write a recurrence relation for the ~hanoi~ function
+2. Solve the recurrence relation
+   - We will use *repeated substitutions*
+*** Solution
+\begin{align}
+  T(n) & = 2 * T(n - 1) + \Theta(1) \\
+  T(0) & = \Theta(1)
+\end{align}
+- Solve using repeated substitution
+\begin{align}
+    T(n) & = 2 * [2 * T(n-2) + \Theta(1)] + \Theta(1) \\
+         & = 2 * [2 * [2 * T(n-3) + \Theta(1)] + \Theta(1)] + \Theta(1) \\
+         & = 2^k * T(n-k) + \Sigma_{i=0}^{k-1}2^i * \Theta(1) \\
+         & = 2^n * T(0) + [2^n - 1] * \Theta(1) \\
+         & = \Theta(2^n)
+\end{align}
+** General sketch (Repeated Substitution)
+1. Formulate the recurrence relation
+2. Start with general formula, substitute recurrence on RHS repeatedly
+   - We conduct an intermediate step general formula
+3. Substitute the intermediate step variables properly and reach basis
+4. Simplify the result
+** Factorial function
+#+begin_src cpp
+int factorial(int n) {
+    if (n <= 1)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+#+end_src
+
+*** Solution
+- Recurrence relation
+    \begin{align}
+    T(n) & = T(n-1) + \Theta(1) \\
+    T(n) & = \Theta(1)
+    \end{align}
+- Repeated substitution
+  \begin{align}
+    T(n) & = T(n - 2) + \Theta(1) + \Theta(1) \\
+         & = T(n - 3) + \Theta(1) + \Theta(1) + \Theta(1) \\
+         & = T(n - k) + k * \Theta(1) \\
+         & = T(n - (n - 1)) + (n - 1) * \Theta(1) \\
+         & = T(1) + (n - 1) * \Theta(1) \\
+         & = \Theta(1) + (n - 1) * \Theta(1) \\
+         & = \Theta(n)
+  \end{align}
+** Binary search
+#+begin_src cpp
+int binarySearch(int a[], int key, int low, int high) {
+    if (low > high)
+        return -1;
+
+    int mid = (low + high) / 2;
+
+    if (a[mid] == key)
+        return mid;
+
+    if (a[mid] > key)
+        return binarySearch(a, key, low, mid - 1);
+
+    return binarySearch(a, key, mid + 1, high);
+}
+#+end_src
+
+*** Solution
+- Recurrence relation (we consider the worst case)
+\begin{align}
+T(n) & = T(n/2) + \Theta(1) \text{ (where n = high - low)} \\
+T(1) & = \Theta(1)
+\end{align}
+- Use repeated substitution
+\begin{align}
+T(n) & = T(n/2^2) + \Theta(1) + \Theta(1) \\
+     & = T(n/2^3) + 3 * \Theta(1) \\
+     & = T(n/2^k) + k * \Theta(1) \\
+     & = T(n/2^{\log_2{n}}) + \log_2{n} * \Theta(1) \\
+     & = T(1) + \log_2{n} * \Theta(1) \\
+     & = \Theta(1) + \log_2{n} * \Theta(1) \\
+     & = (\log_2{n} + 1) \Theta(1) \\
+     & = \Theta(\log{n})
+\end{align}

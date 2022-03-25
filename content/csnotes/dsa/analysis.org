@@ -1,12 +1,11 @@
-#+title: "Algorithm Analysis"
+#+title: Algorithm Analysis
 #+date: 2022-03-23T12:15:38+03:00
-#+draft: true
+#+draft: false
 #+katex: true
 #+options: tex: t
 #+startup: latexpreview
 
 
-[[https://cs.bilkent.edu.tr/~adayanik/cs202/slides/L1_AlgorithmAnalysis.pptx][Slideshow]]
 * C++ code examples (iterative)
 ** Time complexity : $O(n)$
 #+begin_src cpp
@@ -133,3 +132,17 @@ T(n) & = T(n/2^2) + \Theta(1) + \Theta(1) \\
      & = (\log_2{n} + 1) \Theta(1) \\
      & = \Theta(\log{n})
 \end{align}
+
+* True or false?
+1. $2n^2 + 1 = O(n^2)$ : True
+2. $\sqrt{n} = O(\log{n})$ : False
+   - Because $\sqrt{n}$ grows faster than $\log{n}$
+3. $\log{n} = O(\sqrt{n})$ : True
+   - Because $\sqrt{n}$ grows faster than $\log{n}$
+4. $n^2(1+\sqrt{n}) = O(n^2\log{n})$ : False
+   - $n^2\sqrt{n}$ dominates the left hand side
+5. $3n^2 + \sqrt{n} = O(n^2)$ : True
+6. $\sqrt{n}\log{n} = O(n)$ : True
+   - Replace $\log{n}$ w/ $O(\sqrt{n})$
+7. $\log{n} = O(n^{-1/2})$ : False
+   - RHS is decreasing, so cannot be upper bound

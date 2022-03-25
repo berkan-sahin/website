@@ -1,30 +1,16 @@
-#+TITLE: CS202 Notes
-#+OPTIONS: tex: t
-#+STARTUP: latexpreview
-#+AUTHOR: Berkan Şahin
-#+DRAFT: true
-#+DATE: 2022-03-22T08:50:00+03:00
+#+title: Trees
+#+date: 2022-03-23T12:15:53+03:00
+#+draft: true
 #+katex: true
-
-* A pretty important note
-These notes are pretty disorganized at the moment, I shall (hopefully) extend some sections as I 
-go through the document (which can take a few days, since the document is approximately 1.1K lines long, not
-counting heaps and AVL trees). I am posting these because they /might/ be useful to someone, but I give
-no guarantees on that regard.
-
-* Study resources
-These two sites contain problems that can help with the exams, interviews for jobs/internships and your problem solving skills in general
-
-[[https://hackerrank.com][Hackerrank]]
-[[https://leetcode.com][Leetcode]]
+#+options: tex: t
+#+startup: latexpreview
 
 * Trees
-[[https://cs.bilkent.edu.tr/~adayanik/cs202/slides/L3_Trees.pptx][Slideshow]]
-** Definition of a tree
+* Definition of a tree
 - T is a tree if
   a. It has no nodes (leaf)
   b. It has n>0 nodes which are also trees
-** Tree Terminology
+* Tree Terminology
 (Assuming the tree grows downwards)
 - Parent :: The parent of a node n is the node directly above it
 - Child :: The child(ren) of a node n is/are the node(s) directly below it
@@ -34,7 +20,7 @@ These two sites contain problems that can help with the exams, interviews for jo
 - Ancestor :: Ancestor of a node n is a node on the path between the root and the node n
 - Descendant :: A descendant of a node n is any node on the path between n and a leaf node
 - Subtree :: A subtree of a node n is a tree that has a child of n as its root
-** An example tree
+* An example tree
 #+call: shot()
 
 #+RESULTS:
@@ -42,21 +28,21 @@ These two sites contain problems that can help with the exams, interviews for jo
 - Node A has children {B, C, D, E, F, G}
 - {B, C, H, I, P, Q, K, L, M, N} are *leaves*
 - K, L, M are siblings (since their parent is F)
-** Some properties of a tree
+* Some properties of a tree
 - NOTE: We assume that a tree is a directed graph
 - A tree with N nodes has N-1 edges
 - Path :: A path from node $n_1$ to $n_k$ is a sequence of nodes $n_1, n_2, n_3, ..., n_k$ such that $n_i$ is the parent of $n_{i+1}$ $(1 \le i < k)$
-** Level of a node
+* Level of a node
 - The number of nodes on the path from root to a node n
-*** Recursive definition
+** Recursive definition
 - If node n is the root of the tree T, its level is 1
 - If n is not the root of T, its level is 1 + the level of its parent
-** Height of a tree
+* Height of a tree
 - The number of nodes on the longest path from the root to any leaf nodes
-*** Definition 1
+** Definition 1
 - If T is empty, its height is 0
 - If T is not empty, its height is equal to the maximum level of its nodes
-*** Recursive definition
+** Recursive definition
 - If T is empty, its height is 0
 - If T is not empty, its height is $1 + max(height(T_1), height(T_2),..., height(T_n))$ where $T_1$ through $T_n$ are the subtrees of the root node
 
@@ -64,7 +50,7 @@ These two sites contain problems that can help with the exams, interviews for jo
 
   #+RESULTS:
   [[file:./pics/220222-0915-50.png]]
-** Binary tree
+* Binary tree
 - A binary tree is a tree where the nodes have at most two children
 - Called left and right children
 *** Terminology
@@ -399,7 +385,7 @@ void BinaryTree::postorder(TreeNode* node, FunctionType fcn) {
 #+end_src
 ****** Complexity
  - If number of nodes = n, the traversal takes $O(n)$ time for all 3
-** Binary Search Trees
+* Binary Search Trees
 - A binary tree where every node satisfies the following:
   1. All values in left subtree are smaller than the value in the node
   2. All values in right subtree are larger than the value in the node
@@ -600,29 +586,3 @@ BSTNode* readTree(int n, std::istream& file) {
     return node;
 }
 #+end_src
-
-* Tables and Priority Queues
-[[https://cs.bilkent.edu.tr/~adayanik/cs202/slides/L4_Heaps.pptx][slideshow]]
-** Tables
-- array or linked list implementations are called linear since the items come one after another
-  - Unsorted array
-  - Unsorted linked list
-  - Sorted array
-  - Sorted linked list
-- There are also nonlinear implementations such as BSTs
-** Priority Queues
-** Heaps
-- A heap is a complete binary tree such that
-  - It is empty
-  - Its root contains a key greater than the keys in its children, and its children are also heaps
-- This is known as a maxheap
-#+call: shot()
-
-#+RESULTS:
-[[file:./pics/220303-1511-16.png]]
-*** Differences between heap and BST
-1. A BST is sorted, but a heap does not have an absolute order
-2. A heap *must* be a complete binary tree, while a BST can have different shapes
-*** TODO Deleting a node from a heap
-*** TODO restoring the heap
-*** TODO Heapsort

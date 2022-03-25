@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,700;1,700&family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://necolas.github.io/normalize.css/latest/normalize.css');
 
-@font-face{
+@font-face {
     font-family: "Cascadia Mono";
-    src : url("CascadiaMono.woff2");
+    src: url("CascadiaMono.woff2");
 }
 
-body{
+body {
     background: url(img/texture.jpg);
     font-family: "Cascadia Mono", Courier, monospace;
     color: #ebdbb2;
@@ -16,6 +16,7 @@ body{
     max-width: unset;
     margin: auto;
 }
+
 /*figure, img{
     display: block;
     margin-left: auto;
@@ -26,9 +27,24 @@ figcaption{
     text-align: center;
     font-style: italic;
 }*/
-code{
+div.code-toolbar {
+    background: #282828 !important;
+    background-image: none !important;
+}
+
+code {
     font-family: "IBM Plex Mono", monospace !important;
-}/*
+}
+
+.token.comment, .token.cdata, .token.doctype, .token.prolog {
+    color: hsla(0, 0%, 100%, 0.48) !important
+}
+
+.command-line-prompt>span::before, .token.deleted, .token.function, .token.function-name, .token.property, code.language-html, code.language-javascript {
+    color: #bbba66 !important;
+}
+
+/*
 .bottom{
     text-align: center;
 }
@@ -96,10 +112,11 @@ h1.based{
     margin: auto;
 }*/
 
-.footer div{
+.footer div {
     text-align: center;
     margin: auto;
 }
+
 .katex-display {
     overflow-x: auto;
 }

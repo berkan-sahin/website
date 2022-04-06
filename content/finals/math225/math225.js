@@ -1,5 +1,5 @@
 function calculateFinal() {
-    const gradeKey = { "D": 30, "Dplus": 40, "Cminus": 45, "C": 50, "Cplus": 55, "Bminus": 60, "B": 65, "Bplus": 70, "Aminus": 75, "A": 80 };
+    const gradeKey = { "D": 35, "Dplus": 45, "Cminus": 50, "C": 55, "Cplus": 60, "Bminus": 65, "B": 70, "Bplus": 75, "Aminus": 80, "A": 85 };
 
     document.getElementById("reqScores").style.visibility = "visible";
     document.getElementById("FZ").style.visibility = "hidden";

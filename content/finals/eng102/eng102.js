@@ -10,10 +10,10 @@ function calculateFinal(){
 
     library = library * 5 / 10;
     essay = essay * 20 / 22;
-    oral = oral * 20 / 24;
+    oral = oral * 20 / 22;
     outline = outline * 10 / 15;
     interview = interview * 15 / 60;
-    rp = rp * 30 / 100;
+    rp = rp * 30 / 23;
 
     const totalScore = Math.ceil(library + essay + oral + outline + rp + interview);
 

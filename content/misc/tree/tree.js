@@ -20,6 +20,9 @@ function generateExample() {
     } else if (opCount <= 0) {
         alert("Operation count must be a positive integer.");
         return;
+    } else if (!allowRemoval && opCount > maxElem - minElem) {
+        alert("Cannot perform this many insert operations!");
+        return;
     }
 
     var exampleOps = new Array();

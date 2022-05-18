@@ -1,0 +1,53 @@
+---
+title: "Tree Example Generator"
+date: 2022-05-18T17:09:10+03:00
+draft: false
+---
+
+<p>
+    This webpage is intended for practicing insertion and removal for various
+    data structures (BSTs, AVL trees, 2-3-4 trees etc.). However, it can also be used for
+    generating a specific amount of unique random integers in a given range (just uncheck the option named
+    <code>Allow removal</code>). 
+</p> 
+
+<p>
+    <em>Note:</em> Since the numbers are generated completely at random, there are no guarantees on an example
+    sequence of operations being "interesting" or including all the edge cases for the given data structure. 
+</p>
+
+<link rel="stylesheet" href="/finals.css">
+<script src="tree.js"></script>
+
+<body onload="generateExample()">
+    <table class="inputs">
+        <tbody>
+            <tr>
+                <th>Minimum Element</th>
+                <th>Maximum Element</th>
+                <th>Operation Count</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" name="minElem" id="minElem" value="1" min="0">
+                </td>
+                <td>
+                    <input type="number" name="maxElem" id="maxElem" value="100" min="10">
+                </td>
+                <td>
+                    <input type="number" name="opCount" id="opCount" value="15" min="1" max="40">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin-left: auto; margin-right: auto; width: fit-content;">
+        <input type="checkbox" checked id="allowRemove" name="allowRemove" style="width: unset;">
+        <label for="allowRemove">Allow removal</label>
+    </div>
+    <button style="margin-left: auto; margin-right:auto;" onclick="generateExample()">Generate</button>
+<h2>Perform the following operations in the given order: </h2>
+<ol id="exampleOps">
+    
+</ol>
+<h3 id="FZ" style="visibility:hidden;">The difference between min and max must be at least 5</h3>
+</body>

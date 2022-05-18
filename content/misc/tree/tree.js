@@ -42,6 +42,7 @@ function generateExample() {
 
             var operation = document.createElement("li");
             operation.appendChild(document.createTextNode("Remove " + deletedNumber));
+            operation.style.color = "#cc241d";
             exampleOps.push(operation);
         } else {
             var newElem;

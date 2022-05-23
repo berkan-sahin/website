@@ -28,7 +28,7 @@ function calculateFinal() {
 
     const hwContrib = hwAverage / 10;
     const mtContrib = (midterm1Score * 0.15) + (midterm2Score / 5);
-    const labGrade = (exp1Score + exp2Score + exp3Score + proposalScore) * 0.15 + finalReport / 10 + projVideo * 3;
+    const labGrade = (exp1Score + exp2Score + exp3Score + proposalScore) * 0.15 + (finalReport / 10) * 3 + projVideo;
     const currentTotal = mtContrib + hwContrib + quizAverage + (labGrade / 5);
 
     if (mtContrib < 10.5 || labGrade < 60) {

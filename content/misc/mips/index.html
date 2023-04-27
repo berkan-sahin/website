@@ -1,0 +1,215 @@
+---
+title: "Online MIPS Assembler for (System)Verilog"
+date: 2023-04-27T14:54:01+03:00
+draft: false
+---
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+    .tar {
+        height: 100%;
+        margin: 0px;
+        /*text-align: center; */
+      }
+      div.container {
+        max-width: 80%;
+      }
+      textarea, .lnums {
+        line-height: 15px;
+        font-size: 13px;
+        display: inline-block;
+      }
+      textarea {
+        width: 31%;
+        margin-left: 1px;
+        margin-right: 1px;
+      }
+      .lnums {
+        padding: 10px 4px;
+        vertical-align: top;
+      }
+    </style>
+
+      <body>
+    <div class="tar">
+        <p>This is a modified version of the online MIPS assembler found at <a href="https://github.com/bilkentCraps/mips">https://github.com/bilkentCraps/mips</a>. The main differences
+        are as follows:</p>
+        <p>
+            <ol>
+                <li>This assembler is able to parse hexadecimal and binary numbers</li>
+                <li>The <code>adr</code> field of J-Type instructions are interpreted as memory addresses instead of line numbers</li>
+                <li>This assembler supports using the <code>shamt</code> field for R-type instructions</li>
+                <li>If the default instruction definitions are used, the immediate used in the <code>beq</code> instruction is interpreted as an offset from the next line (that is, <code>beq $zero, $zero, -1</code> results in an infinite loop)</li>
+            </ol>
+        </p>
+
+        <p>The left textbox contains the instruction definitions, the middle textbox contains the assembly code, and the right textbox contains the code to paste inside the imem module</p>
+
+        <p></p>
+      <p>You can refer to the README of the original assembler for more info (keep in mind the differences listed above): <a href="https://github.com/bilkentCraps/mips/blob/gh-pages/README.md" >https://github.com/bilkentCraps/mips/blob/gh-pages/README.md</a></p>
+      <textarea id="format">
+j    adr        = 000010 adr
+addi rt rs imm  = 001000 rs rt imm
+beq  rs rt imm = 000100 rs rt imm
+sw   rt imm rs  = 101011 rs rt imm
+lw   rt imm rs  = 100011 rs rt imm
+or   rd rs rt   = 000000 rs rt rd 00000 100101
+and  rd rs rt   = 000000 rs rt rd 00000 100100
+add  rd rs rt   = 000000 rs rt rd 00000 100000
+slt  rd rs rt   = 000000 rs rt rd 00000 101010
+sub  rd rs rt   = 000000 rs rt rd 00000 100010
+        
+      </textarea>
+      <div class="lnums"></div>
+      <textarea id="code">
+addi $t0, $zero, 5
+addi $t1, $zero, 3
+beq $t0, $t1, 2
+add $t2, $t1, $t0
+sub $t0, $t0, $t1
+addi $t1, $t1, -1
+beq $t1, $t0, 2
+sw $t2, 0x50($zero)
+or $t0, $t1, $t0
+slt $t1, $t1, $t0
+beq $t1, $zero, 2	
+lw $t3, 0x50($zero)
+and $t0, $t1, $t0 
+beq $t0, $t0, -1 	# So it loops here
+      </textarea>
+      <textarea id="verilog"></textarea>
+    </div>
+    <script>
+
+      $(document).ready(function () {
+
+        function go() {
+
+          var newh = ($("textarea").css("line-height").replace(/px/, "") * ($("#code").val().split("\n").length + 2));
+
+          if (newh != $("textarea").css("height").replace(/px/, "")) {
+
+            $("textarea").css("height", newh);
+
+            $(".lnums").html("");
+            var lnu = 0;
+            while (($("#code").height() - $(".lnums").height()) > ($("textarea").css("line-height").replace(/px/, "") * 2 + 1)){
+              $(".lnums").append("<div>" + lnu++ + "</div>");
+            }
+
+          }
+
+          $("#verilog").val("");
+
+          var regs = ["zero", "at", "v0", "v1", "a0", "a1", "a2", "a3", "t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "t8", "t9", "k0", "k1", "gp", "sp", "fp", "ra"];
+
+          var formats = $("#format").val().replace(/[ \t]+/g, " ").
+                                           replace(/ = /g, "=").split("\n");
+
+          var clines = $("#code").val().replace(/[ \t]*#[^\n]*/g, "").
+                                        replace(/\)/g, "").
+                                        replace(/\(/g, " ").
+                                        replace(/\$/g, "").
+                                        replace(/,/g, " ").
+                                        replace(/[ \t]+/g, " ").
+                                        replace(/[ \t]*[\n][ \t\n]*/g, "\n").
+                                        replace(/^[\n]/g, "").
+                                        replace(/\n$/, "").
+                                        replace(/[ \t]+$/g, "").split("\n");
+
+          for (var i = 0; i < clines.length; i++) {
+
+            var format = "";
+
+            for (var j = 0; j < formats.length; j++) {
+
+              if (clines[i].indexOf(" ") == -1) {
+
+                if (formats[j].indexOf("=") == -1) { return; }
+                if (formats[j].split("=")[0] == clines[i]) {
+                  format = formats[j];
+                  break;
+                }
+
+              } else {
+
+                if (formats[j].indexOf(" ") == -1) { return; }
+                if (clines[i].indexOf(" ") == -1) { return; }
+                if (formats[j].split(" ")[0] == clines[i].split(" ")[0]) {
+                  format = formats[j];
+                  break;
+                }
+
+              }
+
+            }
+
+            var cs;
+            if (clines[i].indexOf(" ") == -1) {
+              cs = [clines[i]];
+            } else {
+              cs = clines[i].split(" ");
+            }
+            if (format.indexOf("=") == -1) { return; }
+            var ff = format.split("=")[0].split(" ");
+            var ft = format.split("=")[1].split(" ");
+            if ((cs.length != ff.length) || (ff.length > ft.length)) { return; }
+
+            for (var k = 0; k < ft.length; k++) {
+              if (isNaN(ft[k])) {
+                for (var l = 0; l < ff.length; l++) {
+                  if (((ff[l] == "imm") || (ff[l] == "adr") || (ff[l] == "radr") || (ff[l] == "shamt"))) {
+                    if (isNaN(cs[l])) { return; }
+                  } else {
+                    if (!isNaN(cs[l])) { return; }
+                  }
+                  if (ff[l] == ft[k]) {
+                    ft[k] = cs[l];
+                    if (!isNaN(ft[k])) {
+                      if (ff[k] == "adr") {
+                        ft[k] = parseInt(ft[k]) / 4;
+                      }
+                      if (ff[k] == "radr") {
+                        ft[k] = parseInt(ft[k]) - i - 1;
+                      }
+                      if (ft[k] < 0) {
+                        ft[k] = 65536 + parseInt(ft[k]);
+                      }
+                      ft[k] = parseInt(ft[k]).toString(2);
+                      if (ff[l] == "shamt")
+                        while (ft[k].length < 5) {ft[k] = "0" + ft[k];}
+                      else
+                        while (ft[k].length < ((ff[k] == "adr") ? 26 : 16)) {ft[k] = "0" + ft[k];}
+                    }
+                    for (var m = 0; m < regs.length; m++) {
+                      if (ft[k] == regs[m]) {
+                        ft[k] = parseInt(m, 10).toString(2);
+                        while (ft[k].length < 5) {ft[k] = "0" + ft[k];}
+                        break;
+                      }
+                    }
+                    break;
+                  }
+                }
+              }
+            }
+
+            var go = parseInt(ft.join(""), 2).toString(16);
+            while (go.length < 8) {go = "0" + go;}
+            var lnum = parseInt(i * 4, 10).toString(16);
+            while (lnum.length < 2) {lnum = "0" + lnum;}
+            $("#verilog").val($("#verilog").val() + ((i == 0) ? "" : "\n") + "8'h" + lnum + ": instr = 32'h" + go + ";");
+
+          }
+
+        }
+
+        $("textarea").bind("input propertychange", function() {
+          go();
+        });
+
+        go();
+
+      });
+
+    </script>
+  </body>

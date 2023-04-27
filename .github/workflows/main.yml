@@ -27,22 +27,21 @@ jobs:
       - name: rsync deployments
       # You may pin to the exact commit or the version.
         # uses: contention/rsync-deployments@10f98a8726e6760601d8818ea6ff812f87bf8a97
-        uses: contention/rsync-deployments@v2.0.0
+        uses: D3rHase/rsync-deploy-action@v0.2
         with:
           # Initial/required rsync flags
-          flags: -avz --delete
-          # Exclude flags and directory pairs
-          excludes: ""
+          # flags: -avz --delete
           # The server user
-          user: ${{ secrets.USERNAME }}
+          USER: ${{ secrets.USERNAME }}
           # The deployment target
-          host: ${{ secrets.SERVER_IP }}:${{ secrets.SERVER_PORT }}
+          HOST: ${{ secrets.SERVER_IP }}
+          PORT: ${{ secrets.SERVER_PORT }}
           # The local path to sync
-          localpath: "/public"
+          REPOSITORY_PATH: "/public"
           # The remote path to sync
-          remotepath: ${{ secrets.SERVER_DESTINATION }}
+          SERVER_PATH: ${{ secrets.SERVER_DESTINATION }}
           # The private key
-          deploy_key: ${{ secrets.SERVER_SSH_KEY }}
+          PRIVATE_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
 
           
         

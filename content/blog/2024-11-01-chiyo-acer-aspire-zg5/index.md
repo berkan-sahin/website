@@ -184,9 +184,9 @@ Bunsenlabs comes with the Openbox window manager and the tint2 panel. I installe
 
 Some people like to say "Linux is only free if you don't value your time". For this machine, the inverse is true. Every device driver worked out of the box, no digging around old forum posts required. The graphics and audio drivers took quite some fiddling to install on XP, but they just worked on this machine. Here's the output of lspci to accompany this paragraph.   
 
-![firefox](img/linux/firefox.png)
+![Palemoon displaying this blog](img/linux/palemoon.png)
 
-The modern version of Firefox ESR works about as well as any other "backported" browser did in XP. Installing uBlock Origin is a must in these underpowered machines because you can't afford to waste any precious bytes of RAM or CPU cycles on beaming 50 million advertisements directly at your eyeballs.
+Although Firefox ESR works on this machine, using Pale Moon provides a much better browsing experience since the browser is lighter (I resort to using Dillo much less often now that I installed Pale Moon). Installing uBlock Origin is a must in these underpowered machines because you can't afford to waste any precious bytes of RAM or CPU cycles on beaming 50 million advertisements directly at your eyeballs.
 
 ![telehack ssh](img/linux/telehack.png)
 
